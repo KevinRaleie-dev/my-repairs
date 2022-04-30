@@ -34,7 +34,8 @@ const Home: NextPage = () => {
       <Text
       fontSize="lg"
       color="gray.500"
-      mt={2}
+      my={2}
+      align="center"
       >
         We&apos;re working hard to bring you the best service possible. Stay tuned!
       </Text>
