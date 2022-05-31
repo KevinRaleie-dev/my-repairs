@@ -1,7 +1,9 @@
-import { Container, Heading, Text } from '@chakra-ui/react'
+import { Container, Flex, Heading, Text } from '@chakra-ui/react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
+import { FiArrowUpRight } from 'react-icons/fi'
 
 const Home: NextPage = () => {
   return (
@@ -35,11 +37,28 @@ const Home: NextPage = () => {
       fontSize="lg"
       color="gray.500"
       mt={2}
-      mb={10}
+      pb={10}
       align="center"
       >
         We&apos;re working hard to bring you the best service possible. Stay tuned!
       </Text>
+      <Flex
+      alignItems='center'
+      >
+        <Link passHref href='/Onboarding'>
+          <Text
+          as="a"
+          textDecoration="underline"
+          _hover={{
+            fontWeight: 'bold',
+            color: 'blue.500'
+          }}
+          >
+            Sign Up
+          </Text>
+        </Link>
+        <FiArrowUpRight />
+      </Flex>
     </Container>
   )
 }
