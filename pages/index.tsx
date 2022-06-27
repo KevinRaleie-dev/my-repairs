@@ -4,8 +4,17 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FiArrowUpRight } from 'react-icons/fi'
+import { useQuery } from 'react-query'
+
+async function testApi() {
+  const res = await fetch('http://localhost:5000/')
+  const data = await res.json()
+  return data
+}
 
 const Home: NextPage = () => {
+  const { data } = useQuery('test', testApi)
+
   return (
     <Container centerContent>
       <Head>
@@ -45,7 +54,7 @@ const Home: NextPage = () => {
       <Flex
       alignItems='center'
       >
-        <Link passHref href='/Onboarding'>
+        <Link passHref href='/auth/customer/signup'>
           <Text
           as="a"
           textDecoration="underline"
@@ -59,6 +68,7 @@ const Home: NextPage = () => {
         </Link>
         <FiArrowUpRight />
       </Flex>
+      <div>{JSON.stringify(data, null, 2)}</div>
     </Container>
   )
 }
