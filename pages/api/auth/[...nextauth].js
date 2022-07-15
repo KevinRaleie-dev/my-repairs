@@ -1,8 +1,6 @@
 import NextAuth from 'next-auth';
 import Google from 'next-auth/providers/google';
 import Facebook from 'next-auth/providers/facebook';
-import Twitter from 'next-auth/providers/twitter';
-import Apple from 'next-auth/providers/apple';
 
 // we want users to login/sign up with google, facebook and twitter and maybe apple
 

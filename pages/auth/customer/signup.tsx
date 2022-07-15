@@ -81,9 +81,9 @@ const Onboarding = () => {
                 {error && <Text color='red.400'>{error}</Text>}
                 <Stack spacing={5} my={10}>      
                   <Button
-                  onClick={async () => {                    
+                  onClick={() => {                    
                     setProvider('google')
-                    await signIn('google')
+                    signIn('google')
                   }}
                   _focus={{ outline: 'none' }}
                   leftIcon={<AiFillGoogleCircle />}
@@ -97,9 +97,9 @@ const Onboarding = () => {
                     Continue with Google
                   </Button>
                   <Button
-                  onClick={async () => {                    
+                  onClick={() => {                    
                     setProvider('facebook')
-                    await signIn('facebook')
+                    signIn('facebook')
                   }}
                   _focus={{ outline: 'none' }}
                   leftIcon={<AiFillFacebook />}
@@ -132,7 +132,7 @@ const Onboarding = () => {
                   </Box>
                 </Stack>
                 <Text maxW='lg' align='center' fontSize='sm' color='gray.500'>
-                  By continuing, you acknowledge that you have read and understood, and agree to MyRepairs Terms of Service and Privacy Policy.
+                  By continueing, you acknowledge that you have read and understood, and agree to MyRepairs Terms of Service and Privacy Policy.
                 </Text>          
               </Box>
             </>          
