@@ -8,9 +8,10 @@ export const Nav = () => {
     <Flex
     alignItems="center"            
     px={10}
-    borderBottom="1px solid #eaeaea"
+    
     position="sticky"
-    top={0}            
+    top={0}
+    mb={5}          
     zIndex={1}
     bgColor="white"
     >
@@ -28,30 +29,6 @@ export const Nav = () => {
         </Link>    
       </Box>
       <Spacer />
-      <Flex
-      flexDir="row"
-      alignItems="center"
-      justifyContent="space-between"      
-      >
-        <Search />
-
-        <Box
-        ml={5}
-        >
-          <FiBell />
-        </Box>
-        <Box
-        ml={5}
-        >
-          <FiMessageSquare />
-        </Box>
-
-        <Box
-        ml={5}
-        >
-          <FiUser />
-        </Box>
-      </Flex>
     </Flex> 
   )
 }

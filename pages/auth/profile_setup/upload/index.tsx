@@ -88,7 +88,7 @@ const Upload = () => {
                 }}
                 alignItems="center"
                 rightIcon={<FiArrowRight />}
-                onClick={() => router.push('/Onboarding/profile_setup/done')}
+                onClick={() => router.push('/auth/profile_setup/done')}
                 height={50}
                 colorScheme="#D7345B"
                 bgColor="#D7345B"

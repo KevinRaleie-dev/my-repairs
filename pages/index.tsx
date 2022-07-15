@@ -1,9 +1,8 @@
-import { Container, Flex, Heading, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Grid, Heading, Image, Stack, Text } from '@chakra-ui/react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import Link from 'next/link'
-import { FiArrowUpRight } from 'react-icons/fi'
+import { FiArrowRight, FiChevronUp } from 'react-icons/fi'
 import { useQuery } from 'react-query'
 
 async function testApi() {
@@ -15,8 +14,10 @@ async function testApi() {
 const Home: NextPage = () => {
   const { data } = useQuery('test', testApi)
 
+  const services = technicianServices()
+
   return (
-    <Container centerContent>
+    <Box>
       <Head>
         <title>My Repairs - Coming Soon</title>
         <meta name="description" content="My Repairs | Coming Soon" />
@@ -32,45 +33,231 @@ const Home: NextPage = () => {
         <link rel="android-chrome-icon" sizes="512x512" href="/android-chrome-512x512.png" />
       </Head>
 
-      <Image src="/logo.svg" alt="My Repairs Logo" width={150} height={150} />
-      <Image src="/cuate.svg" alt="" width={350} height={350} />
-      <Heading
-      size="2xl" 
-      mt={2}
-      lineHeight={1.1}
-      letterSpacing="wider"
-      >
-        COMING SOON
-      </Heading>
-      <Text
-      fontSize="lg"
-      color="gray.500"
-      mt={2}
-      pb={10}
-      align="center"
-      >
-        We&apos;re working hard to bring you the best service possible. Stay tuned!
-      </Text>
+      {/* Nav */}
       <Flex
-      alignItems='center'
+      py={2}
+      px={8}
+      gap={5}
+      alignItems="center"
+      justifyContent="flex-end"
+      bgColor="gray.200"
+      fontSize="xs" 
+      fontWeight="semibold"
+      color="blue.700"
       >
-        <Link passHref href='/auth/customer/signup'>
-          <Text
-          as="a"
-          textDecoration="underline"
-          _hover={{
-            fontWeight: 'bold',
-            color: 'blue.500'
-          }}
-          >
-            Sign Up
+        <Flex gap={1} alignItems="center">
+          <Text>
+            Support
           </Text>
-        </Link>
-        <FiArrowUpRight />
+          <Box          
+          transform="rotate(180deg)"
+          fontSize="md"
+          >
+            <FiChevronUp />
+          </Box>
+        </Flex>
+        <Text>
+          <Link href='/auth/customer/login' passHref>
+            Log in
+          </Link>
+        </Text>
       </Flex>
-      <div>{JSON.stringify(data, null, 2)}</div>
-    </Container>
+      <Flex 
+      as="nav"
+      borderBottomWidth={1}
+      borderColor="gray.200"
+      px={8} 
+      py={1} 
+      alignItems="center" 
+      position="sticky" 
+      top={0} 
+      zIndex={1} 
+      bgColor="white">
+        <Flex
+        width="full"
+        direction="row"
+        justifyContent="space-between"
+        >
+          <Box>
+            <Image
+            src="/logo.svg"
+            alt="My Repairs logo"
+            width={20}
+            height={20}
+            />
+          </Box>
+          <Flex          
+          direction="row"
+          alignItems="center"
+          gap={8}
+          fontSize="sm"
+          fontWeight="500"
+          >            
+            <NavLink href="/" title="How It Works" />          
+            <NavLink href="/" title="Get A Quote" />          
+            <NavLink href="/" title="About" />            
+            <NavLink href="/" title="Contact Us" />
+          </Flex>
+          <Flex
+          direction="row"
+          alignItems="center"
+          gap={2}
+          >
+            <Link href="/auth/service-provider/join" passHref>
+              <Button
+              colorScheme="none"
+              fontWeight="normal"
+              bgColor="white"
+              borderWidth={2}
+              borderColor="blue"
+              color="blue"
+              >
+                Join as a Service Provider
+              </Button>
+            </Link>
+            <Link
+            href="/auth/customer/signup"
+            passHref
+            >
+              <Button
+              _hover={{
+                opacity: 1
+              }}
+              colorScheme="none"
+              bgColor="blue"
+              color="white"
+              opacity={0.7}
+              fontWeight="medium"
+              
+              >
+                Sign up
+              </Button>
+            </Link>
+          </Flex>
+        </Flex>
+      </Flex>
+      {/* main */}
+      <Box
+      as="main"
+      >
+        <Grid my={20} templateColumns={["repeat(2, 1fr)"]} gap={2} px={20}>
+          <Box>
+            <Stack spacing={6}>
+              <Text
+              fontWeight="bold"
+              color="#D7345B"
+              fontSize="lg"
+              >
+                MyRepairs Service Provider Engagement Platform
+              </Text>
+              <Heading size="3xl" color="purple.900">
+                Find A Maintenance Person <span style={{ color: "#66CECA" }}>In Your Area</span>
+              </Heading>
+              <Text 
+              fontSize="lg"
+              fontWeight="light"
+              color="purple.900">
+                Need something fixed? No problem we&apos;ve got you covered. Find a technician or service provider in your
+                location and book a repair service in no time.
+              </Text>
+              <Box>
+                <Link
+                href="/auth/customer/signup"
+                passHref
+                >
+                  <Button
+                  fontWeight="medium"
+                  colorScheme="none"
+                  color="white"
+                  py={6}
+                  px={5}
+                  bgColor="blue"
+                  opacity={0.7}
+                  rightIcon={<FiArrowRight />}
+                  >
+                    Sign up and book a service
+                  </Button>
+                </Link>
+              </Box>
+              <Flex gap={2}>
+                <Text color="gray.600">
+                  Already a service provider?
+                </Text>
+                <Text
+                color="#D7345B"
+                fontWeight="medium"
+                >
+                  <Link href="/auth/service-provider/login">
+                    Sign in                
+                  </Link>
+                </Text>
+              </Flex>
+            </Stack>
+          </Box>
+          <Box>
+            <Image
+            src="/cuate.svg"
+            alt="repair service"
+            height={561}
+            width={610}
+             />
+          </Box>
+        </Grid>
+      </Box>
+    </Box>
   )
+}
+
+
+type NavLinkProps = {
+  href: string;
+  title: string;
+}
+
+function NavLink({href, title}: NavLinkProps) {
+  return (
+    <Text
+    _hover={{
+      color: "#D7345B"
+    }}
+    >
+      <Link href={href} passHref>
+        {title}
+      </Link>
+    </Text>
+  )
+}
+
+function technicianServices() {
+  // generate a list of technician services along with their images
+  const services = [
+    {
+      name: 'Plumbing',
+      image: '/plumbing.png',
+    },
+    {
+      name: 'Electrical',
+      image: '/electrician.png',
+    },
+    {
+      name: 'Cleaning',
+      image: '/cleaning.jpg',
+    },
+    {
+      name: 'Painting',
+      image: '/painting.png',
+    },
+    {
+      name: 'Carpentry',
+      image: '/carpentry.jpg',
+    },
+    {
+      name: 'HVAC',
+      image: '/hvac.png',
+    },
+  ]
+
+  return services
 }
 
 export default Home

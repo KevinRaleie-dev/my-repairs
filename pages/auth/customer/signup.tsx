@@ -58,12 +58,14 @@ const Onboarding = () => {
               px={5}
               py={2}
               >
-                <Image
-                src="/logo.svg"
-                width={20}
-                height={20}
-                alt="My Repairs logo"
-                />
+                <NextLink href='/' passHref>
+                  <Image
+                  src="/logo.svg"
+                  width={20}
+                  height={20}
+                  alt="My Repairs logo"
+                  />
+                </NextLink>
               </Box>
               
               <Box

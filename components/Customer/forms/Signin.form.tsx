@@ -1,8 +1,9 @@
-import { Stack, FormControl, Input, Button, Text } from '@chakra-ui/react'
+import { Stack, FormControl, Input, Button, Text, InputGroup, InputRightElement } from '@chakra-ui/react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import { FiEye, FiEyeOff } from 'react-icons/fi'
 import { convertToObject } from '../../../src/utils/convertToObject'
 
 type CustomerSignInFormProps = {
@@ -25,7 +26,8 @@ async function signInCustomer(input: CustomerSignInFormProps) {
 
 export const CustomerSignInForm = () => {
   
-  const { handleSubmit, formState, register, setError } = useForm<CustomerSignInFormProps>() 
+  const { handleSubmit, formState, register, setError } = useForm<CustomerSignInFormProps>()
+  const [show, setShow] = React.useState<boolean>(false)
   const router = useRouter()
 
   const onSubmit = async (data: CustomerSignInFormProps) => {
@@ -72,20 +74,27 @@ export const CustomerSignInForm = () => {
                 <Text fontSize={['sm']} align={['right']} color='gray.500'>
                     Forgot password?
                 </Text>
-                <Input
-                {...register("password", { required: true })}
-                type='password'
-                name='password'
-                fontWeight='medium'
-                placeholder='Enter a password'
-                focusBorderColor='black'
-                _placeholder={{
-                    fontWeight: 'medium',
-                    fontSize: 'sm'
-                }}
-                borderWidth={1.5}
-                borderRadius={10}
-                />
+                <InputGroup>
+                    <Input
+                    {...register("password", { required: true })}
+                    type={show ? 'text' : 'password'}
+                    name='password'
+                    fontWeight='medium'
+                    placeholder='Enter a password'
+                    focusBorderColor='black'
+                    _placeholder={{
+                        fontWeight: 'medium',
+                        fontSize: 'sm'
+                    }}
+                    borderWidth={1.5}
+                    borderRadius={10}
+                    />
+                    <InputRightElement
+                    onClick={() => setShow(!show)}
+                    >
+                        {show ? <FiEye /> : <FiEyeOff /> }
+                    </InputRightElement>
+                </InputGroup>
                 
                 {formState.errors.password && <Text fontSize="sm" color="red">{formState.errors.password.message}</Text>}                      
             </FormControl>

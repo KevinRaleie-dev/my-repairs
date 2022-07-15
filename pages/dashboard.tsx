@@ -1,7 +1,7 @@
 import { Box, Flex, Grid, Heading, Stack, Text } from '@chakra-ui/react'
 import React from 'react'
 import { Chat } from '../components/Chat'
-import { Map } from '../components/Map'
+import { Map } from '../components/ui/Map'
 import { Aside } from '../components/ui/Aside'
 import { Nav } from '../components/ui/Nav'
 

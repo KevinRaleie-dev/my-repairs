@@ -6,8 +6,16 @@ import { ChakraProvider } from '@chakra-ui/react'
 
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { Layout } from '../components/Layout'
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			refetchOnWindowFocus: false
+		}
+	}
+});
+
 
 function MyApp({ Component, pageProps: { session, ...pageProps} }: AppProps) {
 
