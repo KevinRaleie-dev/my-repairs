@@ -1,5 +1,6 @@
 import { Avatar, AvatarGroup, Box, Button, Flex, FormControl, FormLabel, Input, InputGroup, InputRightElement, Stack, Text, useToast } from '@chakra-ui/react';
 import axios from 'axios';
+import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -18,7 +19,7 @@ type FormProps = {
 type Status = 'success' | 'error' | 'info' | 'warning';
 
 async function handler(data: FormProps) {
-    const url = 'http://localhost:5000/api/auth/service-provider/register';
+    const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/auth/service-provider/register`;
     try {
         const response =  await axios.post( url, {
             email: data.email,
@@ -63,7 +64,7 @@ const Join = () => {
 
     if (response?.success) {
         console.log('successfully registered')
-        setToken(response.token)
+        setToken("provider-token", response.token)
         
         router.push('/service-provider/settings');
     }    
@@ -71,6 +72,9 @@ const Join = () => {
 
   return (
     <Box>
+        <Head>
+            <title>MyRepairs | Service Provider Sign up</title>
+        </Head>
         <Logo />
         <Box
         display="grid"

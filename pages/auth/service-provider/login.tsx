@@ -14,7 +14,7 @@ type FormProps = {
 }
 
 async function handler(data: FormProps) {
-    const url = 'http://localhost:5000/api/auth/service-provider/login';
+    const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/auth/service-provider/login`;
     try {
         const response =  await axios.post( url, {
             emailOrPhone: data.emailOrPhone,

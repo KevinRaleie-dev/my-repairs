@@ -1,10 +1,12 @@
 import { Stack, FormControl, Input, Button, Text, InputGroup, InputRightElement } from '@chakra-ui/react'
 import axios from 'axios'
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
 import { convertToObject } from '../../../src/utils/convertToObject'
+import { setToken } from '../../../src/utils/token'
 
 type CustomerSignInFormProps = {
     emailOrPhone: string
@@ -12,7 +14,7 @@ type CustomerSignInFormProps = {
 }
 
 async function signInCustomer(input: CustomerSignInFormProps) {
-    const url = 'http://localhost:5000/auth/customer/login';
+    const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/auth/customer/login`;
     try {
         const response =  await axios.post( url, {
             emailOrPhone: input.emailOrPhone,
@@ -42,15 +44,18 @@ export const CustomerSignInForm = () => {
             setError(key as any, { message: errors[key] }, { shouldFocus: true })
         })        
     }
-    else {
-        console.log(signIn.token)
-        localStorage.setItem('mr-token', signIn.token)
 
-        router.push('/feed')
+    if (signIn.success) {
+        setToken("customer-token", signIn.token);
+        router.push('/feed');
     }
   }
 
   return (
+    <>
+    <Head>
+        <title>MyRepairs | Customer Sign in</title>
+    </Head>
     <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={5} direction={["column"]}>
             <FormControl>
@@ -111,5 +116,6 @@ export const CustomerSignInForm = () => {
             </Button>
         </Stack>            
     </form>
+    </>
   )
 }

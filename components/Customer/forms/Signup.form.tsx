@@ -1,4 +1,5 @@
 import { Button, FormControl, Input, InputGroup, InputRightElement, Stack, Text } from '@chakra-ui/react'
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { useForm } from 'react-hook-form'
@@ -27,38 +28,24 @@ export const CustomerSignUpForm = () => {
         })
     }
     else {
-        router.push('/feed');    
+        router.push('/feed'); // redirect to 2fa page   
     }
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-        <Stack spacing={5} direction={["column"]}>
-            <FormControl>
-                <Input
-                {...register("emailOrPhone", { required: true })}
-                type='text'
-                name='emailOrPhone'
-                fontWeight='medium'
-                placeholder='Enter email address or phone number'
-                focusBorderColor='black'
-                _placeholder={{
-                    fontWeight: 'medium',
-                    fontSize: 'sm'
-                }}
-                borderWidth={1.5}
-                borderRadius={10}
-                />
-                {formState.errors.emailOrPhone && <Text fontSize="sm" color="red.500">{formState.errors.emailOrPhone.message}</Text>}           
-            </FormControl>
-            <FormControl>
-                <InputGroup>
+    <>
+        <Head>
+            <title>MyRepairs | Customer Sign up</title>
+        </Head>
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <Stack spacing={5} direction={["column"]}>
+                <FormControl>
                     <Input
-                    {...register("password", { required: true })}
-                    type={show ? 'text' : 'password'}
-                    name='password'
+                    {...register("emailOrPhone", { required: true })}
+                    type='text'
+                    name='emailOrPhone'
                     fontWeight='medium'
-                    placeholder='Create a password'
+                    placeholder='Enter email address or phone number'
                     focusBorderColor='black'
                     _placeholder={{
                         fontWeight: 'medium',
@@ -67,28 +54,47 @@ export const CustomerSignUpForm = () => {
                     borderWidth={1.5}
                     borderRadius={10}
                     />
-                    <InputRightElement
-                    onClick={() => setShow(!show)}
-                    >
-                        {
-                            show ? <FiEye /> : <FiEyeOff />
-                        }
-                    </InputRightElement>
-                </InputGroup>
-                {formState.errors.password && <Text fontSize="sm" color="red">{formState.errors.password.message}</Text>}                      
-            </FormControl>
-            <Button
-            type='submit'
-            isLoading={formState.isSubmitting}
-            _focus={{ outline: 'none' }}
-            borderRadius='full'
-            color='white'
-            bgColor='#D7345B'
-            colorScheme='none'
-            >
-                Continue with email
-            </Button>
-        </Stack>
-    </form>
+                    {formState.errors.emailOrPhone && <Text fontSize="sm" color="red.500">{formState.errors.emailOrPhone.message}</Text>}           
+                </FormControl>
+                <FormControl>
+                    <InputGroup>
+                        <Input
+                        {...register("password", { required: true })}
+                        type={show ? 'text' : 'password'}
+                        name='password'
+                        fontWeight='medium'
+                        placeholder='Create a password'
+                        focusBorderColor='black'
+                        _placeholder={{
+                            fontWeight: 'medium',
+                            fontSize: 'sm'
+                        }}
+                        borderWidth={1.5}
+                        borderRadius={10}
+                        />
+                        <InputRightElement
+                        onClick={() => setShow(!show)}
+                        >
+                            {
+                                show ? <FiEye /> : <FiEyeOff />
+                            }
+                        </InputRightElement>
+                    </InputGroup>
+                    {formState.errors.password && <Text fontSize="sm" color="red">{formState.errors.password.message}</Text>}                      
+                </FormControl>
+                <Button
+                type='submit'
+                isLoading={formState.isSubmitting}
+                _focus={{ outline: 'none' }}
+                borderRadius='full'
+                color='white'
+                bgColor='#D7345B'
+                colorScheme='none'
+                >
+                    Continue with email
+                </Button>
+            </Stack>
+        </form>
+    </>
   )
 }

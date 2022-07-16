@@ -20,8 +20,8 @@ type FormProps = {
 
 const meFetcher = async () => {
   try {
-    const url = 'http://localhost:5000/api/auth/service-provider/me'
-	const token = getToken()
+    const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/auth/me`
+	const token = getToken("provider-token")
     const response = await axios.get(url, {
           headers: {
             Authorization: `Bearer ${token}`
@@ -37,8 +37,8 @@ const meFetcher = async () => {
 
 const createProfileHandler = async (data: FormProps, skills: string []) => {
 	try {
-		const token = getToken()
-		const url = 'http://localhost:5000/api/service-providers/create-profile'
+		const token = getToken("provider-token")
+		const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/service-providers/create-profile`
 		const response = await axios.post(url, {
 					profession: data.profession,
 					bio: data.bio,
@@ -61,8 +61,8 @@ const createProfileHandler = async (data: FormProps, skills: string []) => {
 
 const updatePersonalDetailsHandler = async (firstName: string, lastName: string) => {
 	try {
-		const token = getToken()
-		const url = 'http://localhost:5000/api/service-providers/update-personal-details'
+		const token = getToken("provider-token")
+		const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/service-providers/update-personal-details`
 		const response = await axios.patch(url, {
 			firstName: firstName,
 			lastName: lastName

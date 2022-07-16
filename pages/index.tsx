@@ -3,18 +3,8 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import { FiArrowRight, FiChevronUp } from 'react-icons/fi'
-import { useQuery } from 'react-query'
-
-async function testApi() {
-  const res = await fetch('http://localhost:5000/')
-  const data = await res.json()
-  return data
-}
 
 const Home: NextPage = () => {
-  const { data } = useQuery('test', testApi)
-
-  const services = technicianServices()
 
   return (
     <Box>

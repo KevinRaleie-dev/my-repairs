@@ -2,7 +2,7 @@ import axios from "axios";
 import type { CustomerSignUpFormProps } from "../types";
 
 export async function registerCustomer(input: CustomerSignUpFormProps) {
-    const url = 'http://localhost:5000/auth/customer/register';
+    const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/auth/customer/register`;
     try {
         const response =  await axios.post( url, {
             emailOrPhone: input.emailOrPhone,
@@ -16,7 +16,7 @@ export async function registerCustomer(input: CustomerSignUpFormProps) {
 }
 
 export async function meQuery() {
-    const url = 'http://localhost:5000/auth/customer/me';
+    const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/auth/me`;
 
     try {
         const response = await axios.get(url, {
