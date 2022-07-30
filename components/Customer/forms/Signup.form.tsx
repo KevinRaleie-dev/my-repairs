@@ -4,9 +4,10 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
-import { registerCustomer } from '../../../src/api-calls'
+import { registerCustomer, sendVerificationCode } from '../../../src/api-calls'
 import { CustomerSignUpFormProps } from '../../../src/types'
 import { convertToObject } from '../../../src/utils/convertToObject'
+import { setToken } from '../../../src/utils/token'
 
 export const CustomerSignUpForm = () => {
 
@@ -18,8 +19,12 @@ export const CustomerSignUpForm = () => {
     const register = await registerCustomer({
         emailOrPhone: data.emailOrPhone,
         password: data.password,
-        provider: 'email'
+        provider: 'email',
+        firstName: data.firstName,
+        lastName: data.lastName,
     })
+
+    console.log('before', register)
 
     if (register.response?.data?.success === false) {
         const errors = convertToObject(register.response.data.errors);
@@ -27,8 +32,13 @@ export const CustomerSignUpForm = () => {
             setError(key as any, { message: errors[key] }, { shouldFocus: true })
         })
     }
-    else {
-        router.push('/feed'); // redirect to 2fa page   
+
+    if (register.success) {
+        setToken("mr-token", register.token);
+        const verified = await sendVerificationCode(data.emailOrPhone)
+        if (verified?.data?.status === 'pending') {
+            router.push('/auth/verification')
+        }        
     }
   }
 
@@ -41,11 +51,43 @@ export const CustomerSignUpForm = () => {
             <Stack spacing={5} direction={["column"]}>
                 <FormControl>
                     <Input
+                    {...register("firstName", { required: true })}
+                    type='text'
+                    name='firstName'
+                    fontWeight='medium'
+                    placeholder='Enter your name'
+                    focusBorderColor='black'
+                    _placeholder={{
+                        fontWeight: 'medium',
+                        fontSize: 'sm'
+                    }}
+                    borderWidth={1.5}
+                    borderRadius={10}
+                    />
+                </FormControl>
+                <FormControl>
+                    <Input
+                    {...register("lastName", { required: true })}
+                    type='text'
+                    name='lastName'
+                    fontWeight='medium'
+                    placeholder='Enter your surname'
+                    focusBorderColor='black'
+                    _placeholder={{
+                        fontWeight: 'medium',
+                        fontSize: 'sm'
+                    }}
+                    borderWidth={1.5}
+                    borderRadius={10}
+                    />
+                </FormControl>
+                <FormControl>                                
+                    <Input
                     {...register("emailOrPhone", { required: true })}
                     type='text'
                     name='emailOrPhone'
                     fontWeight='medium'
-                    placeholder='Enter email address or phone number'
+                    placeholder='Enter your Phone number'
                     focusBorderColor='black'
                     _placeholder={{
                         fontWeight: 'medium',
@@ -91,7 +133,7 @@ export const CustomerSignUpForm = () => {
                 bgColor='#D7345B'
                 colorScheme='none'
                 >
-                    Continue with email
+                    Continue
                 </Button>
             </Stack>
         </form>

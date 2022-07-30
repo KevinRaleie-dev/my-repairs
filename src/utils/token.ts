@@ -1,5 +1,5 @@
 
-type Key = "customer-token" | "provider-token";
+export type Key = "mr-token";
 
 /**
  * 

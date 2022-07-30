@@ -1,23 +1,14 @@
 import { Box } from '@chakra-ui/react'
-import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/router'
-import React from 'react'
 import { FiArrowLeft } from 'react-icons/fi'
 
-type BackButtonProps = {
-    href: string
-}
-
-export const BackButton: React.FunctionComponent<BackButtonProps> = ({
-    href
-}) => { 
-    const router = useRouter();
+export const BackButton = () => { 
+  const router = useRouter();
 
   return (
     <Box
     onClick={async () => {
-        router.replace(href)
-        await signOut()
+        router.back()
     }}                  
     borderRadius="50%"
     p={2}

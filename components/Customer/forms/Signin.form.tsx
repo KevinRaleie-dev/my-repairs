@@ -13,6 +13,10 @@ type CustomerSignInFormProps = {
     password: string
 }
 
+type ComponentProps = {
+    onOpen: () => void
+}
+
 async function signInCustomer(input: CustomerSignInFormProps) {
     const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/auth/customer/login`;
     try {
@@ -26,7 +30,9 @@ async function signInCustomer(input: CustomerSignInFormProps) {
     }
 }
 
-export const CustomerSignInForm = () => {
+export const CustomerSignInForm = ({
+    onOpen
+}: ComponentProps) => {
   
   const { handleSubmit, formState, register, setError } = useForm<CustomerSignInFormProps>()
   const [show, setShow] = React.useState<boolean>(false)
@@ -46,8 +52,11 @@ export const CustomerSignInForm = () => {
     }
 
     if (signIn.success) {
-        setToken("customer-token", signIn.token);
-        router.push('/feed');
+		// lets display a modal here to show that the platform is still being worked on.
+        // setToken("mr-token", signIn.token);
+        // router.push('/feed');
+
+        onOpen()
     }
   }
 
@@ -64,7 +73,7 @@ export const CustomerSignInForm = () => {
                 type='text'
                 name='emailOrPhone'
                 fontWeight='medium'
-                placeholder='Enter email address or phone number'
+                placeholder='Enter your phone number'
                 focusBorderColor='black'
                 _placeholder={{
                     fontWeight: 'medium',
@@ -85,7 +94,7 @@ export const CustomerSignInForm = () => {
                     type={show ? 'text' : 'password'}
                     name='password'
                     fontWeight='medium'
-                    placeholder='Enter a password'
+                    placeholder='Enter your password'
                     focusBorderColor='black'
                     _placeholder={{
                         fontWeight: 'medium',

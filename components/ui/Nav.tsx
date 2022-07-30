@@ -8,7 +8,6 @@ export const Nav = () => {
     <Flex
     alignItems="center"            
     px={10}
-    
     position="sticky"
     top={0}
     mb={5}          
@@ -30,22 +29,5 @@ export const Nav = () => {
       </Box>
       <Spacer />
     </Flex> 
-  )
-}
-
-const Search = () => {
-  return (
-    <Box>
-      <InputGroup>
-        <InputLeftElement 
-        pointerEvents='none'>
-        <FiSearch />
-        </InputLeftElement>      
-        <Input
-          placeholder="Search for technicians, categories, or services"
-          
-        />
-      </InputGroup>
-    </Box>
   )
 }

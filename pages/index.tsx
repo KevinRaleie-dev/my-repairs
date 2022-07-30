@@ -84,7 +84,7 @@ const Home: NextPage = () => {
           fontWeight="500"
           >            
             <NavLink href="/" title="How It Works" />          
-            <NavLink href="/" title="Get A Quote" />          
+            {/* <NavLink href="/" title="Get A Quote" />           */}
             <NavLink href="/" title="About" />            
             <NavLink href="/" title="Contact Us" />
           </Flex>
@@ -165,7 +165,7 @@ const Home: NextPage = () => {
                   opacity={0.7}
                   rightIcon={<FiArrowRight />}
                   >
-                    Sign up and book a service
+                    Sign up and request a service
                   </Button>
                 </Link>
               </Box>

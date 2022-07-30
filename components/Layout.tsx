@@ -1,8 +1,8 @@
-import { Box, Container, Divider, Flex, Grid, GridItem, Spacer, Stack, Text } from '@chakra-ui/react';
+import { Box, Container, Flex, Grid, GridItem, Text } from '@chakra-ui/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { FiHome, FiMail, FiMap, FiMessageSquare, FiSettings } from 'react-icons/fi';
+import { FiFile, FiHome, FiMail, FiMap, FiSettings } from 'react-icons/fi';
 import { Navigation } from './Navigation';
 
 type LayoutProps  = {
@@ -22,7 +22,7 @@ export const Layout: React.FC<LayoutProps> = ({
     <>
         <Navigation />
         <div>
-            <Grid my={5} px={8} templateColumns="repeat(4, 1fr)" gap={0} h="full">
+            <Grid my={5} px={2} templateColumns="repeat(4, 1fr)" gap={0} h="full">
                 <GridItem colSpan={1}>
                     <Container>
                         <SideNavigation>
@@ -42,16 +42,20 @@ export const Layout: React.FC<LayoutProps> = ({
 							href='/messages'
 							/>
                             <SideNavigationItem
+                            icon={<FiFile />}
+                            title="Booking History"
+                            href="/booking-history"
+                            />
+                            <SideNavigationItem
                             icon={<FiSettings />}
                             title="Settings"
-                            href="/service-provider/settings" 
+                            href="/settings" 
                             />
-                            <Divider />
 		                </SideNavigation>
                     </Container>
                 </GridItem>
-                <GridItem px={4} colSpan={contentColSpan} overflowY="auto">
-                    <Box>
+                <GridItem w="full" px={0} colSpan={contentColSpan} overflowY="auto">
+                    <Box width="full">
                         {children}
                     </Box>
                 </GridItem>
@@ -107,7 +111,7 @@ const SideNavigationItem: React.FC<SideNavItemProps> = ({
                 bg={isActive ? 'blue.100' : 'transparent'}
                 p={3}            
                 color={isActive ? 'blue.600' : 'gray.600'}
-                borderRadius={5}
+                borderRadius={10}
                 fontWeight="medium"
                 >
                     <Box>

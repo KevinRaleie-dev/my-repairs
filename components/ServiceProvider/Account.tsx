@@ -11,14 +11,18 @@ export const Account = () => {
 
   return (
     <div>
-		<Text fontSize="xl" fontWeight="medium" color="purple.900" mb={5}>
-			Your account
-		</Text>
+		<Flex direction="column" mb={5}>
+			<Text fontSize="xl" fontWeight="medium" color="purple.900">
+				Your account
+			</Text>
+			<Text color="gray.600" fontSize="sm" fontWeight="medium">
+				Manage your account settings here.
+			</Text>
+		</Flex>
 		<Container>
-			<Flex onClick={() => {
-				signOut()
-				clearToken()
-				router.replace('/');
+			<Flex onClick={() => {				
+				clearToken("mr-token")
+				router.push('/');
 				
 			}} p={3} bgColor="gray.100" fontWeight="medium" cursor="pointer" alignItems="center" gap={3} mb={10} >
 				<FiLogOut />
@@ -28,7 +32,7 @@ export const Account = () => {
 			<Text fontWeight="semibold" fontSize="lg" color="#ED1C24">
 				Dangerous area
 			</Text>
-			<Box p={3} bgColor="gray.100" display="flex" flexDirection="row" cursor="pointer" alignItems="center" fontWeight="medium">
+			<Box p={3} bgColor="gray.100" gap={3} display="flex" flexDirection="row" cursor="pointer" alignItems="center" fontWeight="medium">
 				<FiTrash2 />
 				<Text>
 					Delete account

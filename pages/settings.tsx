@@ -1,11 +1,19 @@
 import { Box, Flex, Heading, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 import Head from 'next/head';
-import { Layout } from '../../../components/Layout';
-import { Account } from '../../../components/ServiceProvider/Account';
-import { UpdateServiceProviderProfile } from '../../../components/ServiceProvider/UpdateServiceProviderProfile';
-import { UploadDocuments } from '../../../components/ServiceProvider/UploadDocuments';
+import { useQuery } from 'react-query';
+import {UpdateCustomerProfile} from '../components/Customer/UpdateCustomerProfile';
+import { Layout } from '../components/Layout';
+import { Account } from '../components/ServiceProvider/Account';
+import { UpdateServiceProviderProfile } from '../components/ServiceProvider/UpdateServiceProviderProfile';
+import { UploadDocuments } from '../components/ServiceProvider/UploadDocuments';
+import { meQuery } from '../src/api-calls';
 
 const ServiceProviderProfile = () => {
+  const {data: me, isLoading} = useQuery('me-query', meQuery)
+
+  if (isLoading) {
+    return <>Loading...</>
+  }
 
   return (
 	<>
@@ -17,7 +25,7 @@ const ServiceProviderProfile = () => {
       <Flex
       direction="column"
       gap={1}>
-        <Heading>
+        <Heading color="purple.900">
           Settings
         </Heading>
       <Tabs mt={2}>
@@ -38,7 +46,9 @@ const ServiceProviderProfile = () => {
       {/* Tab panels */}
       <TabPanels>
         <TabPanel>
-          <UpdateServiceProviderProfile />
+          {
+            me?.role === "provider" ? <UpdateServiceProviderProfile /> : <UpdateCustomerProfile />
+          }
         </TabPanel>
         <TabPanel>
           <UploadDocuments />

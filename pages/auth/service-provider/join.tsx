@@ -6,7 +6,9 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
+import { useMutation } from 'react-query';
 import { Logo } from '../../../components/ui/Logo';
+import { sendVerificationCode } from '../../../src/api-calls';
 import { convertToObject } from '../../../src/utils/convertToObject';
 import { setToken } from '../../../src/utils/token'
 
@@ -35,21 +37,12 @@ async function handler(data: FormProps) {
 
 const Join = () => {
   const { register, handleSubmit, formState, setError } = useForm<FormProps>()
+  const verificationMutation = useMutation(async (phoneNumber: string) => {
+    return await sendVerificationCode(phoneNumber)
+  })
   const [show, setShow] = React.useState<boolean>(false);
 
   const router = useRouter();
-  const toast = useToast();
-
-
-  const handleToast = (title: string, description: string, status: Status) => {
-    toast({
-        title,
-        description,
-        status,
-        duration: 9000,
-        isClosable: true,
-      })
-  }
 
   const onSubmit = async (data: FormProps) => {
     const response = await handler(data);
@@ -64,9 +57,14 @@ const Join = () => {
 
     if (response?.success) {
         console.log('successfully registered')
-        setToken("provider-token", response.token)
-        
-        router.push('/service-provider/settings');
+        setToken("mr-token", response.token)
+
+        // send verification code to phone number
+        const verified = await verificationMutation.mutateAsync(data.phone)
+
+        if (verified?.data?.status === 'pending') {
+            router.push('/auth/verification')
+        }
     }    
   }
 

@@ -1,6 +1,8 @@
 import { Avatar, Container, Flex, Stack, Tag, Text } from '@chakra-ui/react'
 import { Layout } from '../components/Layout'
 import { PostCard } from '../components/PostCard'
+import Head from 'next/head'
+import { Suggestions } from '../components/ui/Suggestions'
 
 const HomeFeed = () => {
 
@@ -17,7 +19,10 @@ const HomeFeed = () => {
   }
 
   return (
-    <>      
+    <>   
+      <Head>
+		<title>MyRepairs | Home</title>       
+      </Head>
       <Layout
       contentColSpan={2}
       rightElement={Suggestions}
@@ -91,79 +96,6 @@ const HomeFeed = () => {
               </Flex>
         </>
       </Layout>
-    </>
-  )
-}
-
-const Suggestions = () => {
-  return (
-    <>
-      <Container>
-          <Flex
-          justifyContent="space-between"
-          fontSize="sm"
-          >
-            <Text
-            fontWeight="medium"
-            >
-              Suggested Technicians
-            </Text>
-            <Text
-            color="blue.500"
-            >
-              See all
-            </Text>
-          </Flex>
-          <Flex
-          direction={["column"]}
-          >
-            <Stack direction="row" align="center" fontSize="sm" spacing={3} mt={3}>
-              <Avatar
-              size="md"
-              name="John Doe"
-              />
-              <Flex
-              direction={["column"]}
-              >
-                <Text fontWeight="medium">
-                  John Doe
-                </Text>
-                <Text color="gray.500">
-                  @johndoe
-                </Text>
-              </Flex>
-            </Stack>
-            <Stack direction="row" align="center" fontSize="sm" spacing={3} mt={3}>
-              <Avatar
-              size="md"
-              name="Jo Nape"
-              />
-              <Flex
-              direction={["column"]}
-              >
-                <Text fontWeight="medium">
-                  Jo Nape
-                </Text>
-                <Text color="gray.500">
-                  @jonape
-                </Text>
-              </Flex>
-            </Stack>
-            <Stack direction="row" align="center" fontSize="sm" spacing={3} mt={3}>
-              <Avatar name='Ryan Florence' src='https://bit.ly/ryan-florence' />
-              <Flex
-              direction={["column"]}
-              >
-                <Text fontWeight="medium">
-                  Ryan Florence
-                </Text>
-                <Text color="gray.500">
-                  @ryanflorence
-                </Text>
-              </Flex>
-            </Stack>
-          </Flex>
-        </Container>
     </>
   )
 }

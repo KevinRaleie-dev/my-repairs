@@ -7,6 +7,8 @@ import { useForm } from 'react-hook-form';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { Logo } from '../../../components/ui/Logo'
 import { convertToObject } from '../../../src/utils/convertToObject';
+import { setToken } from '../../../src/utils/token';
+import { useRouter } from 'next/router';
 
 type FormProps = {
     emailOrPhone: string;
@@ -32,23 +34,30 @@ const LoginTechnician = () => {
   const [message, setMessage] = React.useState<string>('');
   const { isOpen, onClose, onOpen } = useDisclosure()
   const { register, handleSubmit, formState, setError } = useForm<FormProps>();
+  const router = useRouter();
 
     const onSubmit = async (data: FormProps) => {
         const response = await handler(data); // move this into a useMutation hook
 
         console.log(response)
 
-        if (response?.response?.data?.errors?.length > 0) {
+        // literally the same code as in the customer sign in but not working the same ???
+
+        if (response?.response?.data?.success === false) {
             const errors = convertToObject(response.response.data.errors);
             Object.keys(errors).forEach(key => {
                 setError(key as any, { message: errors[key] }, { shouldFocus: true })
             })
+            return;     // why do i have to return early ??  
         }
 
         if (response?.isVerified === false) {
-            setMessage(response?.message)
-            onOpen()
-        } // else: store token and redirect to feed
+			setMessage(response?.message)
+			onOpen()
+        } else {
+            setToken("mr-token", response?.token)
+            router.push('/feed')
+        }
     }
 
   return (
