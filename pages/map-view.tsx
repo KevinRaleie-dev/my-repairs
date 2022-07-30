@@ -25,7 +25,7 @@ const Map = () => {
         <Layout
         rightElement={() => null}
         > 
-            <div>{viewport.latitude} {viewport.longitude}</div>
+            {/* <div>{viewport.latitude} {viewport.longitude}</div> */}
             {/* <Mapbox /> */}
             <ReactMap
             initialViewState={viewport}            
