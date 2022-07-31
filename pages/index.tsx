@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Grid, Heading, Image, Stack, Text } from '@chakra-ui/react'
+import { Box, Button, Container, Flex, Grid, Heading, Image, Stack, Text } from '@chakra-ui/react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -7,7 +7,7 @@ import { FiArrowRight, FiChevronUp } from 'react-icons/fi'
 const Home: NextPage = () => {
 
   return (
-    <Box>
+    <Box mb={10}>
       <Head>
         <title>My Repairs - Coming Soon</title>
         <meta name="description" content="My Repairs | Coming Soon" />
@@ -194,6 +194,133 @@ const Home: NextPage = () => {
           </Box>
         </Grid>
       </Box>
+
+      <Box as="section">
+        <Box px={20} py={5}>
+          <Stack spacing={5} align="center">
+            <Heading as="h2" color="blue.900" textAlign="center">Making Your Life More Convenient</Heading>
+            
+            <Stack direction={["column", "row"]} align="center" spacing={10}>
+              <Flex lineHeight="tall" color="gray.700" direction="column" gap={5} maxW="lg">
+                <Text>
+                  Where do you go during the middle of the day if you need a handyman or if one of your household appliances has to be repaired? What should you do in the event that an unexpected emergency arises, such as a pipe in your kitchen or bathroom that is leaking?
+                </Text>
+                <Text>
+                  Traditionally, you would either run to the nearest business that specialized in repairing home appliances or plumbing, or you would have to search for a reliable person. On the other hand, a lot of new home service businesses have started up recently. These businesses take advantage of the on-demand economy and make it easier to find a qualified person. 
+                </Text>
+                <Text>
+                  Myrepairs is the answer; we simplify your life and make it simpler.
+                </Text>
+              </Flex>
+              <Image 
+              src="/Feb-Business_9.jpg"
+              alt="question mark image"
+              width={500}
+              height={500}
+              />
+            </Stack>
+          </Stack>
+        </Box>
+      </Box>
+
+      <Box as="section">
+        <Box px={20} py={5}>
+          <Stack spacing={5} align="center">
+            <Heading color="purple.900" as="h3">About Us</Heading> 
+            <Stack direction={["column", "row-reverse"]} align="center" spacing={10}>
+              <Flex lineHeight="tall" color="gray.700" direction="column" gap={5} maxW="lg">
+                <Text>
+                  Myrepairs is an internet-based on-demand home service company that was founded with the intention of making homeowners and their families more content. It makes it possible for consumers to obtain rapid home services of a high quality while simultaneously enhancing the efficiency of personnel. We want to solve three of the most common problems that customers have: delays, poor quality, and not being able to see how much something costs.
+                </Text>
+                <Text>
+                  We offer a platform that allows clients searching for specialized services to connect with qualified and professional service providers. Once a user has signed up for the site, our system for finding a match will look for experts who match the user&apos;s criteria and are available in the area.
+                </Text>
+              </Flex>              
+              <Image
+              src="/networking.jpg"
+              alt="networking image"
+              width={500}
+              height={500}
+              />
+            </Stack>
+            <Stack direction={["column", "row"]} align="center" spacing={10}>
+              <Flex lineHeight="tall" color="gray.700" direction="column" gap={5} maxW="lg">
+                <Text color="purple.900" fontWeight="semibold" fontSize="2xl">Our Story</Text>
+                <Text>
+                  Myrepairs was formed out of need, like many great things. Isn&apos;t it hard to find reliable service providers who always show up on time when you need help with small but important tasks around the house?
+                </Text>
+                <Text>
+                  We&apos;ve all been there. The moment we began, After a series of services that were little more than glorified directories, we decided to build Myrepairs. Myrepairs has made it simpler than ever to fix your appliances or locate a plumber. We want to help you solve all of your home problems quickly, easily, and most importantly, affordably. We do this with personalized online solutions, unmatched service quality, and professionals who have been fully vetted and are always ready to help.
+                </Text>
+                <Text>
+                In keeping with our name, we&apos;re here to assist (Myrepairs). Our goal is to provide the best on-demand service in South Africa.
+                </Text>
+                <Text>
+                  Time and day the user chooses.
+                </Text>
+              </Flex>              
+              <Image
+              src="/help.jpg"
+              alt="support services image"
+              width={500}
+              height={500}
+              />
+            </Stack>
+          </Stack>          
+        </Box>
+        <Box mx={10} my={20} borderRadius={20} p={8} bgColor="#D7345B" color="white">
+          <Stack spacing={10} align="center">
+            <Heading>How do we ensure that you get the best possible help from us?</Heading>
+            <Flex gap={2} fontWeight="medium" fontSize="sm" direction={["column", "column", "row"]} justifyContent="space-between">
+              <Box bgColor="#DF5D7C" p={2} borderRadius={10} maxW="sm">
+                <Text>
+                  To guarantee that you get the finest possible service, each of our partners has been thoroughly vetted and has significant industry expertise.
+                </Text>
+              </Box>
+              <Box bgColor="#DF5D7C" p={2} borderRadius={10} maxW="sm">
+                <Text>
+                Before you make any payments, we will let you know exactly what it is that you&apos;ll be paying for and how much it will be.
+                </Text>
+              </Box>
+              <Box bgColor="#DF5D7C" p={2} borderRadius={10} maxW="sm">
+                <Text>
+                Not only do we provide the highest quality of service that is humanly feasible, but we also give a service warranty.
+                </Text>
+              </Box>
+            </Flex>
+            <Flex gap={2} fontWeight="medium" fontSize="sm" direction={["column", "column", "row"]} justifyContent="space-between">
+              <Box bgColor="#DF5D7C" p={2} borderRadius={10} maxW="sm">
+                <Text>
+                You will have more time to unwind and be at peace thanks to the intuitive nature of our platform, which makes it very user-friendly.
+                </Text>
+              </Box>
+              <Box bgColor="#DF5D7C" p={2} borderRadius={10} maxW="sm">
+                <Text>
+                You may choose from a variety of payment methods. Make use of our trustworthy and dependable online payment solutions.
+                </Text>
+              </Box>
+              <Box bgColor="#DF5D7C" p={2} borderRadius={10} maxW="sm">
+                <Text>
+                We are here to assist you whenever you want our assistance, day or night, seven days a week. You may get help at any time that is most convenient for you.
+                </Text>
+              </Box>
+            </Flex>
+          </Stack>
+        </Box>
+        <Stack py={20} color="gray.600" spacing={5} lineHeight="tall" align="center" px={20} textAlign="center">
+          <Text
+          fontWeight="semibold"
+          fontSize={["md", "3xl", "5xl"]}
+          color="purple.900"
+          >Providing Services and Establishing Pricing</Text>
+          <Text fontSize={["md", "xl"]}>
+            We cater both the products we provide and the pricing we charge to each individual client in order to give them the highest possible level of service. Customers have the option to choose between on-demand services and scheduled services, and they may make use of any of the listed service providers.
+          </Text>
+          <Text fontSize={["md", "xl"]}>
+            And Because we only hire the most qualified service professionals and do thorough background checks on them before letting them join our team, you can be sure that your money will be well spent and that you will always be safe.
+          </Text>
+        </Stack>
+      </Box>
     </Box>
   )
 }
@@ -216,38 +343,6 @@ function NavLink({href, title}: NavLinkProps) {
       </Link>
     </Text>
   )
-}
-
-function technicianServices() {
-  // generate a list of technician services along with their images
-  const services = [
-    {
-      name: 'Plumbing',
-      image: '/plumbing.png',
-    },
-    {
-      name: 'Electrical',
-      image: '/electrician.png',
-    },
-    {
-      name: 'Cleaning',
-      image: '/cleaning.jpg',
-    },
-    {
-      name: 'Painting',
-      image: '/painting.png',
-    },
-    {
-      name: 'Carpentry',
-      image: '/carpentry.jpg',
-    },
-    {
-      name: 'HVAC',
-      image: '/hvac.png',
-    },
-  ]
-
-  return services
 }
 
 export default Home

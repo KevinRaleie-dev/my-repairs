@@ -39,25 +39,26 @@ export const CustomerSignInForm = ({
   const router = useRouter()
 
   const onSubmit = async (data: CustomerSignInFormProps) => {
-    const signIn = await signInCustomer({
-        emailOrPhone: data.emailOrPhone,
-        password: data.password
-    })
+    onOpen()
+    // const signIn = await signInCustomer({
+    //     emailOrPhone: data.emailOrPhone,
+    //     password: data.password
+    // })
 
-    if (signIn.response?.data?.success === false) {
-        const errors = convertToObject(signIn.response.data.errors);
-        Object.keys(errors).forEach(key => {
-            setError(key as any, { message: errors[key] }, { shouldFocus: true })
-        })        
-    }
+    // if (signIn.response?.data?.success === false) {
+    //     const errors = convertToObject(signIn.response.data.errors);
+    //     Object.keys(errors).forEach(key => {
+    //         setError(key as any, { message: errors[key] }, { shouldFocus: true })
+    //     })        
+    // }
 
-    if (signIn.success) {
+    // if (signIn.success) {
 		// lets display a modal here to show that the platform is still being worked on.
         // setToken("mr-token", signIn.token);
         // router.push('/feed');
 
-        onOpen()
-    }
+        // onOpen()
+    // }
   }
 
   return (

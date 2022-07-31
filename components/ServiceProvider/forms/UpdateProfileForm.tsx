@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { createServiceProviderProfileHandler, meQuery } from '../../../src/api-calls'
 import { capitalize } from '../../../src/utils/capitalize'
+import { convertToObject } from '../../../src/utils/convertToObject'
 import { UpdateProfileLayout } from '../../ui/UpdateProfileLayout'
 
 type FormProps = {
@@ -21,7 +22,7 @@ export const UpdateProfileForm = () => {
     const queryClient = useQueryClient()
     const [skill, setSkill] = React.useState<string>('')
     const [skills, setSkills] = React.useState<string[]>([])
-    const { register, handleSubmit, formState } = useForm<FormProps>();
+    const { register, handleSubmit, formState, setError } = useForm<FormProps>();
     const { data: me } = useQuery('me-query', meQuery, {
         onSuccess: (data) => {            
             if (data?.data?.profile !== null) {
@@ -56,12 +57,20 @@ export const UpdateProfileForm = () => {
   }
 
   const onSubmit = async (data: FormProps) => {
-    await mutation.mutateAsync({
+    const response = await mutation.mutateAsync({
         profession: data.profession,
         bio: data.bio,
         ratePerHour: data.ratePerHour,
         skills: skills
     })
+
+    if (response?.response?.data?.success === false) {
+        const errors = convertToObject(response.response.data.errors);
+        Object.keys(errors).forEach(key => {
+            setError(key as any, { message: errors[key] }, { shouldFocus: true })
+        })
+        return;     // why do i have to return early ??  
+    }
 
     queryClient.invalidateQueries('me-query')
     handleToast()
@@ -140,6 +149,7 @@ export const UpdateProfileForm = () => {
                         placeholder='R0.00'
                         />
                     </InputGroup>
+                {formState.errors.ratePerHour && <Text fontSize="xs" color="red.500">{formState.errors.ratePerHour.message}</Text>}
                 </FormControl>
             </UpdateProfileLayout>
             <Flex
