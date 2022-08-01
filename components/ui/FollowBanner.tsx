@@ -22,11 +22,11 @@ export const FollowBanner = ({ mt }: FollowBannerProps) => {
 						socialIcon={<FiFacebook />}
 					/>
 					<SocialLinks
-						socialLink='facebook.com/myrepairs'
+						socialLink='twitter.com/myrepairs'
 						socialIcon={<FiTwitter />}
 					/>
 					<SocialLinks
-						socialLink='facebook.com/myrepairs'
+						socialLink='instagram.com/myrepairs'
 						socialIcon={<FiInstagram />}
 					/>
 				</Flex>
