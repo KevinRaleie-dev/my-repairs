@@ -59,9 +59,7 @@ const Home: NextPage = () => {
 				</Text>
 			</Flex>
 			<Flex
-				as="nav"
-				borderBottomWidth={1}
-				borderColor="gray.200"
+				as="nav"				
 				px={[2, 8]}
 				py={1}
 				alignItems="center"
