@@ -71,7 +71,7 @@ export const CustomerSignInForm = ({
             <FormControl>
                 <Input
                 {...register("emailOrPhone", { required: true })}
-                type='text'
+                type='tel'
                 name='emailOrPhone'
                 fontWeight='medium'
                 placeholder='Enter your phone number'

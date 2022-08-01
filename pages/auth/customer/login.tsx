@@ -1,36 +1,26 @@
 import { Box, Button, Flex, Image, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Stack, Text, useDisclosure } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import { CustomerSignInForm } from '../../../components/Customer/forms/Signin.form'
+import { Logo } from '../../../components/ui/Logo'
 
 const Login = () => {
   const { isOpen, onClose, onOpen } = useDisclosure()
   return (
     <Box>
-      <Box                    
-      px={5}
-      py={2}
-      >
-        <NextLink href="/" passHref>
-          <Image
-          src="/logo.svg"
-          width={20}
-          height={20}
-          alt="My Repairs logo"
-          />
-        </NextLink>
-      </Box>      
+      <Logo />     
       <Box
+      px={5}
       display="grid"
       placeItems={["center"]}
       >
         <Text 
-        fontSize="3xl"
+        fontSize={["xl", "2xl"]}
         fontWeight="bold"
         color="purple.900"
-        align={["center"]}>
-          Customer Log In
+        textAlign={["center"]}>
+          Customer Sign In
         </Text>
-			<Flex gap={1} mt={2}>
+			<Flex fontSize={["sm", "md"]} gap={1} mt={2}>
 				<Text color="gray.600">Are you a service provider?</Text>
 				<Text color="#D7345B" fontWeight="medium">
 					<NextLink href='/auth/service-provider/login' passHref>
@@ -44,18 +34,21 @@ const Login = () => {
           <Text>
             Don&apos;t have an account ?
           </Text>
-          <NextLink href="/auth/customer/signup" passHref>                  
-              <a>Sign up</a>            
-          </NextLink>
+          <Text color="purple.900" fontWeight="medium">
+            <NextLink href="/auth/customer/signup" passHref>                  
+                Sign up            
+            </NextLink>
+          </Text>
         </Box>
       </Stack>
-      <Text maxW='lg' align='center' fontSize='sm' color='gray.500'>
+      <Text mt={20} textAlign="center" fontSize='xs' color='gray.400'>
         By continuing, you acknowledge that you have read and understood, and agree to MyRepairs Terms of Service and Privacy Policy.
       </Text>
     </Box>
 
              {/* Modal */}
-      <Modal        
+      <Modal
+        size="xs"       
         onClose={onClose} 
         isOpen={isOpen} 
         isCentered>
@@ -63,7 +56,7 @@ const Login = () => {
         <ModalContent
         borderRadius={12}
         >
-          <ModalHeader color="purple.900">Can&apos;t wait huh?</ModalHeader>
+          <ModalHeader color="purple.900">Can&apos;t wait?</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Text

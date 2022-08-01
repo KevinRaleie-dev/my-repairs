@@ -20,7 +20,7 @@ const Done = () => {
             width={100}
             height={100}
              />
-            <Stack align="center">
+            <Stack align="center" textAlign="center" maxW="lg" px={5}>
                 <Heading color="purple.900" fontSize="xl">Your Account Has Been Successfully Verified.</Heading>
                 {
                     me?.role === 'customer' ? <>
@@ -35,7 +35,7 @@ const Done = () => {
                                 <Text>
                                     In the meantime you can setup your profile
                                 </Text>
-                                <Text color="#D7345B" fontWeight="bold">
+                                <Text color="#D7345B" fontWeight="bold" textDecoration="underline">
                                     <Link href='/settings' passHref>
                                         here.
                                     </Link>

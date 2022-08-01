@@ -13,9 +13,11 @@ export const CustomerSignUpForm = () => {
 
   const { handleSubmit, formState, register, setError } = useForm<CustomerSignUpFormProps>()
   const [show, setShow] = React.useState<boolean>(false)
+  const [isError, setIsError] = React.useState<string>('')
   const router = useRouter()
 
   const onSubmit = async (data: CustomerSignUpFormProps) => {
+    // move this into useMutation hook
     const register = await registerCustomer({
         emailOrPhone: data.emailOrPhone,
         password: data.password,
@@ -24,7 +26,11 @@ export const CustomerSignUpForm = () => {
         lastName: data.lastName,
     })
 
-    console.log('before', register)
+    if (register?.response?.data === undefined) {
+        setIsError(register.message)
+    }
+
+    
 
     if (register.response?.data?.success === false) {
         const errors = convertToObject(register.response.data.errors);
@@ -48,6 +54,7 @@ export const CustomerSignUpForm = () => {
             <title>MyRepairs | Customer Sign up</title>
         </Head>
         <form onSubmit={handleSubmit(onSubmit)}>
+            <Text textAlign="center" fontSize="xs" color="red" mb={5}>{isError}</Text>
             <Stack spacing={5} direction={["column"]}>
                 <FormControl>
                     <Input
