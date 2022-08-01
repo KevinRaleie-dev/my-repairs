@@ -3,6 +3,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import { FiArrowRight, FiChevronUp } from 'react-icons/fi'
+import { FollowBanner } from '../components/ui/FollowBanner'
 
 const Home: NextPage = () => {
 
@@ -46,7 +47,12 @@ const Home: NextPage = () => {
 						<FiChevronUp />
 					</Box>
 				</Flex>
-				<Text>
+				<Text textDecoration="underline">
+					<Link href='/about' passHref>
+						About us
+					</Link>
+				</Text>
+				<Text textDecoration="underline">
 					<Link href='/auth/customer/login' passHref>
 						Log in
 					</Link>
@@ -56,7 +62,7 @@ const Home: NextPage = () => {
 				as="nav"
 				borderBottomWidth={1}
 				borderColor="gray.200"
-				px={8}
+				px={[2, 8]}
 				py={1}
 				alignItems="center"
 				position="sticky"
@@ -75,20 +81,7 @@ const Home: NextPage = () => {
 							width={20}
 							height={20}
 						/>
-					</Box>
-					<Flex
-						display={["none", "none", "none", "flex"]}
-						direction="row"
-						alignItems="center"
-						gap={8}
-						fontSize="sm"
-						fontWeight="500"
-					>
-						<NavLink href="/" title="How It Works" />
-						{/* <NavLink href="/" title="Get A Quote" />           */}
-						<NavLink href="/" title="About" />
-						<NavLink href="/" title="Contact Us" />
-					</Flex>
+					</Box>					
 					<Flex
 						display={["none", "none", "none", "flex"]}
 						direction="row"
@@ -98,11 +91,10 @@ const Home: NextPage = () => {
 						<Link href="/auth/service-provider/join" passHref>
 							<Button
 								colorScheme="none"
-								fontWeight="normal"
-								bgColor="white"
-								borderWidth={2}
-								borderColor="blue"
-								color="blue"
+								fontWeight="medium"
+								bgColor="blue"																
+								color="white"
+								opacity={0.7}
 							>
 								Join as Service Provider
 							</Button>
@@ -211,50 +203,6 @@ const Home: NextPage = () => {
 			</Box>
 
 			<Box as="section">
-				{/* <Box px={20} py={5}>
-					<Stack spacing={5} align="center">
-						<Heading color="purple.900" as="h3">About Us</Heading>
-						<Stack direction={["column", "row-reverse"]} align="center" spacing={10}>
-							<Flex lineHeight="tall" color="gray.700" direction="column" gap={5} maxW="lg">
-								<Text>
-									Myrepairs is an internet-based on-demand home service company that was founded with the intention of making homeowners and their families more content. It makes it possible for consumers to obtain rapid home services of a high quality while simultaneously enhancing the efficiency of personnel. We want to solve three of the most common problems that customers have: delays, poor quality, and not being able to see how much something costs.
-								</Text>
-								<Text>
-									We offer a platform that allows clients searching for specialized services to connect with qualified and professional service providers. Once a user has signed up for the site, our system for finding a match will look for experts who match the user&apos;s criteria and are available in the area.
-								</Text>
-							</Flex>
-							<Image
-								src="/networking.jpg"
-								alt="networking image"
-								width={500}
-								height={500}
-							/>
-						</Stack>
-						<Stack direction={["column", "row"]} align="center" spacing={10}>
-							<Flex lineHeight="tall" color="gray.700" direction="column" gap={5} maxW="lg">
-								<Text color="purple.900" fontWeight="semibold" fontSize="2xl">Our Story</Text>
-								<Text>
-									Myrepairs was formed out of need, like many great things. Isn&apos;t it hard to find reliable service providers who always show up on time when you need help with small but important tasks around the house?
-								</Text>
-								<Text>
-									We&apos;ve all been there. The moment we began, After a series of services that were little more than glorified directories, we decided to build Myrepairs. Myrepairs has made it simpler than ever to fix your appliances or locate a plumber. We want to help you solve all of your home problems quickly, easily, and most importantly, affordably. We do this with personalized online solutions, unmatched service quality, and professionals who have been fully vetted and are always ready to help.
-								</Text>
-								<Text>
-									In keeping with our name, we&apos;re here to assist (Myrepairs). Our goal is to provide the best on-demand service in South Africa.
-								</Text>
-								<Text>
-									Time and day the user chooses.
-								</Text>
-							</Flex>
-							<Image
-								src="/help.jpg"
-								alt="support services image"
-								width={500}
-								height={500}
-							/>
-						</Stack>
-					</Stack>
-				</Box> */}
 				<Box mx={[0, 0, 0, 20]} my={[0, 0, 0, 20]} borderRadius={[0, 0, 0, 20]} py={8} px={[3, 5]} bgColor="#D7345B" color="white">
 					<Stack spacing={10} align="center">
 						<Heading textAlign="center">How do we ensure that you get the best possible help from us?</Heading>
@@ -294,18 +242,19 @@ const Home: NextPage = () => {
 						</Flex>
 					</Stack>
 				</Box>
-				<Stack color="white" bgColor="black" py={10} spacing={5} lineHeight="tall" align="center" px={[5, 10, 20]} textAlign="center">
+				<Stack color="#fafafa" bgColor="black" py={20} spacing={5} lineHeight="tall" align="center" px={[5, 10, 20]} textAlign="center">
 					<Text
 						fontWeight="semibold"
 						fontSize={["3xl", "5xl"]}
 					>Providing Services and Establishing Pricing</Text>
-					<Text fontSize={["sm", "md", "xl"]}>
+					<Text fontSize={["sm", "md", "lg"]}>
 						We cater both the products we provide and the pricing we charge to each individual client in order to give them the highest possible level of service. Customers have the option to choose between on-demand services and scheduled services, and they may make use of any of the listed service providers.
 					</Text>
-					<Text fontSize={["sm", "md", "xl"]}>
+					<Text fontSize={["sm", "md", "lg"]}>
 						And Because we only hire the most qualified service professionals and do thorough background checks on them before letting them join our team, you can be sure that your money will be well spent and that you will always be safe.
 					</Text>
 				</Stack>
+				<FollowBanner mt={0} />
 			</Box>
 		</Box>
 	)
