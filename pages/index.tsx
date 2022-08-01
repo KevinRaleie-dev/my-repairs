@@ -27,7 +27,7 @@ const Home: NextPage = () => {
 			{/* Nav */}
 			<Flex
 				py={2}
-				px={8}
+				px={[2, 8]}
 				gap={5}
 				alignItems="center"
 				justifyContent="flex-end"
