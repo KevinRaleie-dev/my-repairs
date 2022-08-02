@@ -20,13 +20,13 @@ export const UpdateServiceProviderProfile = () => {
                 <main>                                                              
                     <Text
                     fontWeight="medium"
-                    fontSize="xl"
+                    fontSize={["lg", "xl"]}
                     color="purple.900"
                     >
                     Personal info
                     </Text>
                     <Text
-                    fontSize="sm"
+                    fontSize={["xs", "sm"]}
                     color="gray.600"
                     mb={5}
                     >

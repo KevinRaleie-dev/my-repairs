@@ -44,14 +44,15 @@ export const UpdateServiceProviderAddressForm = () => {
   return (
     <div>
         <Text
+		mt={10}
         fontWeight="medium"
-        fontSize="xl"
+        fontSize={["lg", "xl"]}
         color="purple.900"
         >
         Address details
         </Text>
         <Text
-        fontSize="sm"
+        fontSize={["xs", "sm"]}
         color="gray.600"
         mb={5}
         >
@@ -62,6 +63,7 @@ export const UpdateServiceProviderAddressForm = () => {
                 <FormControl>
                     <Input
 					{...register('streetAddress')}
+					focusBorderColor="none"
 					name='streetAddress'
 					defaultValue={me?.data?.streetAddress}
 					/>
@@ -72,6 +74,7 @@ export const UpdateServiceProviderAddressForm = () => {
                     <Input
 					{...register('suburb')}
 					name='suburb'
+					focusBorderColor='none'
 					defaultValue={me?.data?.suburb}
 					/>
                 </FormControl>
@@ -110,15 +113,18 @@ export const UpdateServiceProviderAddressForm = () => {
                 <FormControl>
                     <Input
 					{...register('postalCode')}
+					type="number"
 					name='postalCode'
+					focusBorderColor='none'
 					defaultValue={me?.data?.postalCode}
 					/>
                 </FormControl>
             </UpdateProfileLayout>
-            <Flex justifyContent="flex-end" mt={2} px={10}>
+            <Flex justifyContent="flex-end" mt={2} px={[0, 10]}>
                 <Button
 				isLoading={mutation.isLoading}
                 type="submit"
+				size="sm"
                 colorScheme="none" 
                 color="white" 
                 bgColor="#D7345B">

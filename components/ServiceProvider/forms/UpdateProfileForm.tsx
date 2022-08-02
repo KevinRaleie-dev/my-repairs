@@ -80,18 +80,18 @@ export const UpdateProfileForm = () => {
 		<div>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<Text
-					mt={5}
+					mt={10}
 					color="purple.900"
 					fontWeight="medium"
-					fontSize="xl">Profile details</Text>
-				<Text fontSize="sm" color="gray.600">
+					fontSize={["lg", "xl"]}>Profile details</Text>
+				<Text fontSize={["xs", "sm"]} color="gray.600">
 					This section handles updating your profile details. Click the Update profile button to save your changes.
 				</Text>
 				<UpdateProfileLayout label='Profession' description='What do you do for work?'>
 					<FormControl>
 						<Input
 							{...register("profession")}
-							focusBorderColor='black'
+							focusBorderColor='none'
 							bg="white"
 							defaultValue={me.data?.profile?.profession}
 							placeholder="eg. Plumber, Electrician, etc."
@@ -102,7 +102,7 @@ export const UpdateProfileForm = () => {
 					<FormControl>
 						<Textarea
 							{...register("bio")}
-							focusBorderColor='black'
+							focusBorderColor='none'
 							bg="white"
 							defaultValue={me.data?.profile?.bio}
 							placeholder="I am a plumber and I am good at fixing things..."
@@ -113,7 +113,7 @@ export const UpdateProfileForm = () => {
 					<FormControl>
 						<Input
 							bg="white"
-							focusBorderColor='black'
+							focusBorderColor='none'
 							onChange={handleSkillChange}
 							placeholder='Add skills'
 						/>
@@ -122,6 +122,7 @@ export const UpdateProfileForm = () => {
 							alignItems="baseline"
 							justifyContent="flex-start"
 							gap={2}
+							flexWrap="wrap"
 							mt={2}
 						>
 							{skills.map((skill, index) => (
@@ -141,24 +142,27 @@ export const UpdateProfileForm = () => {
 							<Input
 								{...register("ratePerHour")}
 								bg="white"
-								focusBorderColor='black'
+								focusBorderColor='none'
 								defaultValue={me.data?.profile?.ratePerHour}
-								min={0}
+								min={1}
+								max={250}
 								type="number"
 								name="ratePerHour"
 								placeholder='R0.00'
 							/>
 						</InputGroup>
-						{formState.errors.ratePerHour && <Text fontSize="xs" color="red.500">{formState.errors.ratePerHour.message}</Text>}
+						{formState.errors.ratePerHour && <Text fontSize="xs" color="red.500">
+						{formState.errors.ratePerHour.message}</Text>}
 					</FormControl>
 				</UpdateProfileLayout>
 				<Flex
 					mt={2}
-					px={10}
+					px={[0, 10]}
 					justifyContent="flex-end"
 				>
 					<Button
 						isLoading={mutation.isLoading}
+						size="sm"
 						type="submit"
 						colorScheme="none"
 						bgColor="#D7345B"

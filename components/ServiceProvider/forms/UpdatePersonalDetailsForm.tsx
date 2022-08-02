@@ -46,7 +46,7 @@ export const UpdatePersonalDetailsForm = () => {
                     <FormControl>
                         <Input
                         {...register("firstName")}
-                        focusBorderColor="black"
+                        focusBorderColor="none"
                         name="firstName"
                         bg="white"
                         type="text"
@@ -57,7 +57,7 @@ export const UpdatePersonalDetailsForm = () => {
                     <FormControl>
                         <Input
                         {...register("lastName")}
-                        focusBorderColor="black"
+                        focusBorderColor="none"
                         name="lastName"
                         bg="white"
                         type="text"
@@ -84,7 +84,10 @@ export const UpdatePersonalDetailsForm = () => {
                         placeholder="Email address"    
                         />
                     </InputGroup>
-                        <FormHelperText>You cannot update your email address yet because your account has not been verified by us yet.</FormHelperText>
+					<FormHelperText fontSize="xs">
+					You cannot update your email address yet because your account has 
+					not been verified by us yet.
+					</FormHelperText>
                 </FormControl>
             </UpdateProfileLayout>
             <UpdateProfileLayout label='Phone number'>
@@ -104,12 +107,16 @@ export const UpdatePersonalDetailsForm = () => {
                         placeholder='Phone number'
                         />
                     </InputGroup>
-                        <FormHelperText>You cannot update your phone number yet because your account has not been verified by us yet.</FormHelperText>
+					<FormHelperText fontSize="xs">
+					You cannot update your phone number yet because your account 
+					has not been verified by us yet.
+					</FormHelperText>
                 </FormControl>
             </UpdateProfileLayout>
-            <Flex justifyContent="flex-end" mt={2} px={10}>
+            <Flex justifyContent="flex-end" mt={2} px={[0, 10]}>
                 <Button
                 type="submit"
+				size="sm"
                 isLoading={mutation.isLoading}
                 colorScheme="none"
                 color="white"

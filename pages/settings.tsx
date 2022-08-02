@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
+import { Box, Flex, Text, Heading, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 import Head from 'next/head';
 import { useQuery } from 'react-query';
 import {UpdateCustomerProfile} from '../components/Customer/UpdateCustomerProfile';
@@ -25,9 +25,12 @@ const ServiceProviderProfile = () => {
       <Flex
       direction="column"
       gap={1}>
-        <Heading color="purple.900">
-          Settings
-        </Heading>
+       <Text
+	   pl={[2, 0]}
+	   fontWeight="semibold"
+	   color="purple.800"
+	   fontSize={["2xl", "3xl"]}
+	   >Settings</Text>
       <Tabs mt={2}>
       <TabList>
         <Tab>
@@ -38,9 +41,6 @@ const ServiceProviderProfile = () => {
         </Tab>
         <Tab>
           Account
-        </Tab>
-        <Tab>
-          Notifications
         </Tab>
       </TabList>
       {/* Tab panels */}

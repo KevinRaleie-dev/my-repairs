@@ -15,15 +15,15 @@ type LayoutProps  = {
 
 export const Layout: React.FC<LayoutProps> = ({
     children,
-    contentColSpan = 3, // default to 3
+    contentColSpan = 1, // default to 3
     rightElement,
 }) => {
   return (
     <>
         <Navigation />
         <div>
-            <Grid my={5} px={2} templateColumns="repeat(4, 1fr)" gap={0} h="full">
-                <GridItem colSpan={1}>
+            <Grid my={5} px={2} templateColumns="repeat(1, 1fr)" gap={0} h="full">
+                <GridItem display={["none"]}>
                     <Container>
                         <SideNavigation>
                             <SideNavigationItem

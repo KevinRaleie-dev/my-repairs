@@ -21,35 +21,14 @@ const HomeFeed = () => {
   return (
     <>   
       <Head>
-		<title>MyRepairs | Home</title>       
+		<title>MyRepairs | Home Feed</title>       
       </Head>
       <Layout
       contentColSpan={2}
       rightElement={Suggestions}
       >
         <>        
-            {/* filter feed  */}
-          <Flex
-          my={2}
-          direction={["row"]}
-            justifyContent="space-between"
-          >
-            {
-              filterTags().map((tag, index) => {
-                return (                  
-                  <Tag 
-                  _active={{
-                    transform: "scale(0.8)",
-                  }}
-                  size="md" key={index} variant="subtle" cursor="pointer" bgColor={tag === "Today" ? "black" : ""} color={tag === "Today" ? "white" : ""}>
-                    {tag}
-                  </Tag>                  
-                )
-              })
-            }
-          </Flex>
-            {/* end filter feed  */}
-              
+             
               <Flex
               direction={["column"]}
               >

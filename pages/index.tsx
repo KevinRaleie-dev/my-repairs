@@ -1,9 +1,8 @@
-import { Box, Button, Container, Flex, Grid, Heading, Image, Stack, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Grid, Heading, Image, Stack, Text } from '@chakra-ui/react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import { FiArrowRight, FiChevronUp } from 'react-icons/fi'
-import { FollowBanner } from '../components/ui/FollowBanner'
 
 const Home: NextPage = () => {
 
@@ -11,9 +10,9 @@ const Home: NextPage = () => {
 		<Box>
 			<Head>
 				<title>My Repairs - Coming Soon</title>
-				<meta name="description" content="My Repairs | Coming Soon" />
-				<meta name="keywords" content="My Repairs, Coming Soon" />
-				<meta name="author" content="My Repairs" />
+				<meta name="description" content="Find a maintenance person in your area." />
+				<meta name="keywords" content="Myrepairs, Coming Soon, Technician, Service Provider" />
+				<meta name="author" content="MyRepairs" />
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 				{/* add favicon */}
 
@@ -162,7 +161,7 @@ const Home: NextPage = () => {
 				</Grid>
 			</Box>
 
-			<Box as="section">
+			{/* <Box as="section"> move to about page
 				<Box px={[5, 10, 20]} py={5}>
 					<Stack spacing={5} align="center">
 						<Text 
@@ -253,7 +252,7 @@ const Home: NextPage = () => {
 					</Text>
 				</Stack>
 				<FollowBanner mt={0} />
-			</Box>
+			</Box> */}
 		</Box>
 	)
 }

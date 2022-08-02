@@ -17,10 +17,10 @@ export const UpdateProfileLayout = ({
         <>
             <Flex
             mt={8}            
-            direction="row"
-            alignItems="center"
+            direction={["column", "row"]}
+            alignItems={["flex-start", "center"]}
             justifyContent="space-between"
-            gap={20}
+            gap={[2, 20]}
             mb={8}        
             >
                 <Flex
@@ -42,8 +42,9 @@ export const UpdateProfileLayout = ({
                     </Text>
                 </Flex>
                 <Flex
-                pr={10}
-                width={500}
+                //pr={10}
+				width="full"
+                //width={500}
                 >
                    {children}
                 </Flex>

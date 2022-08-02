@@ -18,19 +18,19 @@ export const Navigation = () => {
         bgColor="white"
         alignItems="center"
         borderBottomWidth={1}        
-        px={20}
-        py={2}
+        px={[5, 10, 20]}
+        py={[1, 2]}
         >
             <Box display={["flex"]} alignItems="center">
               <Link href="/feed" passHref>
                 <Image 
                 src="/logo.svg"
                 alt="logo"
-                width={12}
-                height={12}
+                width={[12]}
+                height={[12]}
                 />
               </Link>
-                <Box ml={5}>
+                <Box display="none" ml={5}>
                     <InputGroup>
                         <InputLeftElement>
                             <FiSearch />
@@ -68,26 +68,42 @@ export const Navigation = () => {
                 ) : null
               } 
                 <Box
-                mr={3}
+                mr={5}
                 >
-				  <Flex direction="column" alignItems="center" color="gray.600" justifyContent="center" gap={1}> 
-                  <FiInbox />
-				  <Text fontSize="xs" fontWeight="medium">My Inbox</Text>
+				  <Flex 
+				  direction="column" 
+				  alignItems="center" 
+				  color="gray.600" 
+				  justifyContent="center" 
+				  gap={1}> 
+					  <FiInbox />
+					  <Text display={["none"]} fontSize="xs" fontWeight="medium">My Inbox</Text>
 				  </Flex>
                 </Box>          
-                <Divider height={10} width={2} orientation='vertical' />                
+                <Divider height={10} width={2} display={["none"]} orientation='vertical' />                
             </Box>
             <Box display={["flex"]} alignItems="center">
-                <Flex direction="column" color="gray.600" alignItems="center" gap={1} justifyContent="center">
+                <Flex 
+				direction="column" 
+				color="gray.600" 
+				alignItems="center" 
+				gap={1} 
+				justifyContent="center">
                   <FiBell />
-				  <Text fontSize="xs" fontWeight="medium">My Notifications</Text>
+				  <Text fontSize="xs" display={["none"]} fontWeight="medium">My Notifications</Text>
                 </Flex>
+				<Box
+				display={["flex", "flex", "none"]}
+				ml={5} 
+				color="gray.600">
+					<FiSearch />
+				</Box>
 				<Link href='/profile' passHref>
 				    <Flex direction="column" gap={1} alignItems="center" justifyContent="center">
 					    <Avatar
 						cursor="pointer"
 						name={data?.data?.firstName + ' ' + data?.data?.lastName}
-						ml={3} size="sm" />
+						ml={5} size="sm" />
 					</Flex>
 				</Link>
             </Box>
